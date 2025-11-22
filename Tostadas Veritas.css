@@ -1,0 +1,306 @@
+/* ===============================
+   VARIABLES DE COLOR
+=============================== */
+:root {
+  --bg: #f6f7fb;
+  --card: #ffffff;
+  --text: #222;
+  --accent: #ff6b00;
+  --shadow: rgba(0,0,0,0.12);
+  --panel: #ffffff;
+}
+
+body.dark {
+  --bg: #131417;
+  --card: #1f1f22;
+  --panel: #1f1f22;
+  --text: #f5f5f5;
+  --shadow: rgba(0,0,0,0.35);
+}
+
+/* ===============================
+   RESET
+=============================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Poppins", sans-serif;
+  overflow-x: hidden;
+}
+
+/* ===============================
+   HEADER
+=============================== */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 25px;
+  background: var(--card);
+  box-shadow: 0 3px 12px var(--shadow);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+.tag {
+  font-size: 12px;
+  opacity: 0.7;
+}
+
+.icon-btn, .cart-btn {
+  background: var(--card);
+  border: 1px solid var(--accent);
+  padding: 8px 12px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.25s;
+}
+
+.icon-btn:hover, .cart-btn:hover {
+  background: var(--accent);
+  color: white;
+}
+
+.cart-btn {
+  position: relative;
+}
+
+.cart-count {
+  background: red;
+  color: white;
+  font-size: 12px;
+  padding: 2px 6px;
+  border-radius: 50%;
+  position: absolute;
+  top: -5px;
+  right: -5px;
+}
+
+/* ===============================
+   GRID DE PRODUCTOS
+=============================== */
+.menu-grid {
+  display: grid;
+  gap: 25px;
+  padding: 25px;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 601px) and (max-width: 900px) {
+  .menu-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 901px) {
+  .menu-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* ===============================
+   TARJETAS
+=============================== */
+.card {
+  background: var(--card);
+  padding: 15px;
+  border-radius: 15px;
+  box-shadow: 0 3px 12px var(--shadow);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  transition: 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 16px var(--shadow);
+}
+
+.card img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+.btn-add {
+  padding: 10px;
+  background: var(--accent);
+  color: white;
+  border: none;
+  font-weight: bold;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn-add:hover {
+  opacity: 0.8;
+}
+
+/* ===============================
+   PANEL DEL CARRITO
+=============================== */
+.side-panel {
+  width: 350px;
+  max-width: 90%;
+  background: var(--panel);
+  height: 100%;
+  position: fixed;
+  top: 0;
+  right: -100%;
+  padding: 20px;
+  box-shadow: -3px 0 15px var(--shadow);
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  z-index: 50;
+  
+  /* Animación suave */
+  transform: translateX(100%);
+  transition: transform 0.35s ease;
+}
+
+.side-panel.open {
+  transform: translateX(0);
+}
+
+.panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.close {
+  background: red;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.cart-items {
+  flex: 1;
+  overflow-y: auto;
+}
+
+.cart-item {
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+}
+
+body.dark .cart-item {
+  border-color: #444;
+}
+
+.empty {
+  text-align: center;
+  color: #777;
+}
+
+body.dark .empty { color: #aaa; }
+
+.cart-footer {
+  padding-top: 10px;
+  border-top: 1px solid #ccc;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  background: var(--card);
+  color: var(--text);
+}
+
+.btn {
+  width: 100%;
+  padding: 12px;
+  border-radius: 10px;
+  cursor: pointer;
+  border: none;
+  font-weight: bold;
+}
+
+.primary {
+  background: var(--accent);
+  color: white;
+}
+
+.ghost {
+  background: transparent;
+  border: 2px solid var(--accent);
+  color: var(--accent);
+}
+
+/* ===============================
+   TOAST
+=============================== */
+.toast {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--accent);
+  color: white;
+  padding: 12px 18px;
+  border-radius: 10px;
+  opacity: 0;
+  transition: 0.4s;
+  z-index: 100;
+}
+
+.toast.show {
+  opacity: 1;
+}
+
+/* ===============================
+   RESPONSIVE MÓVIL
+=============================== */
+@media (max-width: 600px) {
+  .menu-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .side-panel {
+    width: 100% !important;
+    max-width: 100% !important;
+    right: -100% !important;
+  }
+
+  .side-panel.open {
+    right: 0 !important;
+  }
+
+  html, body {
+    overflow-x: hidden;
+  }
+}
+
+
